@@ -1,17 +1,31 @@
-//Imports
+///////////////////////////|
+//|File: Application.java
+//|Author: Jerrin C. Redmon
+//|Language: Java
+//|Version: 2.0
+//|Date: September 20, 2023
+///////////////////////////|
+
+/* Description:
+ * main file to run the elevator simulator
+ * allows user input for requested number of floors
+ * tracks time elapsed and overall efficiency
+ */
+ 
+//----------------------------------------------------------------
+
+// Imports //
 import java.util.Timer;
 import java.util.TimerTask;
 import java.util.Scanner;
 
-/**
- * main file to run the elevator simulator
- * allows user input for requested number of floors
+/**Javadocs**
  * @author Jerrin C. Redmon
- * @version 1.0
+ * @version 2.0
  */
 public class Application {
+
 	static int time = 0;
- 	
 	public static void main(String[] args) {
 		Scanner input = new Scanner(System.in);
 		String title = "===============================================================\n"
@@ -33,7 +47,12 @@ public class Application {
 		Elevator elevator = new Elevator(building);
 		Timer timer = new Timer();
 		TimerTask task = new TimerTask() {
+
+			/**
+			 * Runs Simulator
+			 */
 			public void run() {
+
 				elevator.update();
 				elevator.display();
 				time++;
@@ -43,6 +62,7 @@ public class Application {
 				System.out.println("|==========================================|");
 			}
 		};
+
 		input.close();
 		timer.scheduleAtFixedRate(task, 0, 1000);
 	}
